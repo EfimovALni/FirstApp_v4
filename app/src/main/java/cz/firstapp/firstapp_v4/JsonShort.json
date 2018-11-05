@@ -1,0 +1,23 @@
+{
+  "status": "OK",
+  "actual_version": 0.01,
+  "configuartion": {
+    "initial_screen": [
+      {
+        "color": "#0000ff",
+        "text": "software",
+        "icon": "data:image/png;base64,iVB="
+      },
+      {
+        "color": "#0000ff",
+        "text": "citrix",
+        "icon": "data:image/png;base64,iVBO+A="
+      },
+      {
+        "color": "#0000ff",
+        "text": "equipment",
+        "icon": "data:image/png;base64,iVB="
+      }
+    ]
+  }
+}

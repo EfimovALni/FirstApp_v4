@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FirstApp_v4</string>
+    <string name="MessageNotInternetConnection">Couldn\'t place update application. Make sure your device has an Internet connection and try again.</string>
+    <string name="TitleNotInternetConnection">No the Internet connection</string>
+    <string name="title_activity_test">TestActivity</string>
+</resources>
+
+
