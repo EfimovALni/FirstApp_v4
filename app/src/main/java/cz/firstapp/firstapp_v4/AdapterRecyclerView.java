@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import cz.firstapp.firstapp_v4.model.DataResponse;
 import cz.firstapp.firstapp_v4.model.Initial_screen;
+import retrofit2.Callback;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder> {
     private Context mContext;
@@ -23,6 +25,8 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
     private MainActivity mainActivity;
 
     private static final String TAG = "Res ";
+
+
 
     public void setmContext(Context mContext) {
         this.mContext = mContext;

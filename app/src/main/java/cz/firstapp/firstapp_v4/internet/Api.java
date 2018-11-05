@@ -14,9 +14,4 @@ public interface Api {
     @FormUrlEncoded
     @POST("DAN/ajaxData.php")
     Call<DataResponse> getData(@FieldMap Map<String, String> fields);
-
-//    @GET ("/JsonShort.json")
-//    Call<DataResponse> getData();
-
-
 }
