@@ -63,9 +63,11 @@ public class MainActivity extends AppCompatActivity {
                     ));
                 }
 
-                /** Transmitting data to Adapter RecyclerView */
+                /** Transmitting data to Adapter RecyclerView   */
                 adapter = new AdapterRecyclerView(MainActivity.this, mDataFromServer);
                 recyclerView.setAdapter(adapter);
+
+                /* Compare version on server and current version of app, if it difference, we change appearance of app .....Start */
             }
 
             @Override
@@ -88,18 +90,4 @@ public class MainActivity extends AppCompatActivity {
         return parametersForServer;
     }
     /*Method for filling requests according the API of website,  POST ....................... End */
-
-
-//    /**
-//     * Method for DeSerialize picture ........................................................ Start
-//     */
-//    public Bitmap decodeImg(String str_icon_raw) {
-//        /** Preparing Base64 for Deserialize ico */
-//        String str_icon = str_icon_raw.replace(
-//                "data:image/png;base64,", "");
-//        byte[] decodedString = Base64.decode(str_icon, Base64.DEFAULT);
-//
-//        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-//    }
-//    /* Method for DeSerialize picture ........................................................ End */
 }
