@@ -2,8 +2,10 @@ package cz.firstapp.firstapp_v4;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
@@ -50,7 +52,6 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Initial_screen example = mData.get(position);
-
         holder.tvNameIco.setText(example.getText());
 
         /** Convert Based64 to image*/
@@ -58,6 +59,22 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         String str_icon = s.replace("data:image/png;base64,", "");
         byte[] decodedString = Base64.decode(str_icon, Base64.DEFAULT);
         holder.ivIco.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
+
+        //  Set click listener
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //  Passing data to the Second Activity
+                Intent intent = new Intent(mContext, SecondActivity.class);
+                intent.putExtra("NameIco", mData.get(position).getText());
+
+                intent.putExtra("Ico", mData.get(position).getIcon()); //TODO: ---------------!
+
+                //  Start the Second Activity
+                mContext.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -69,11 +86,14 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
     public static class ViewHolder extends RecyclerView.ViewHolder {
         protected TextView tvNameIco;
         protected ImageView ivIco;
+        protected CardView cardView;    // Buttons on the main screen
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             tvNameIco = (TextView) itemView.findViewById(R.id.tv_name_ico);
             ivIco = (ImageView) itemView.findViewById(R.id.iv_ico);
+            cardView = (CardView) itemView.findViewById(R.id.cv_buttons_on_main_screen);
         }
     }
 

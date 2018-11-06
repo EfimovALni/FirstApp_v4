@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#00528E</color>
+
+    <!--Additional colors-->
+    <color name="colorWhite">#ffff</color>
+    <color name="colorBackground">#e9e9e9</color>
+    <color name="colorBackgroundCheckBocks">#00518f</color>
+    <color name="colorBackgroundCheckBocksPushed">#aee2f5</color>
+    <color name="colorButtonsMainScreen">#88a9bd</color>
+    <color name="colorButtonsMainScreenShadow1">#48b9fd</color>
+    <color name="colorButtonsMainScreenShadow2">#5db3e8</color>
 </resources>
