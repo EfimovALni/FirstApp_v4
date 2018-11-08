@@ -19,8 +19,9 @@ public class ApiClient {
      * Code for server
      */
     private static final String BASED_URL = "https://www.videotechnik.cz/";
-    private static final String BASED_URL_LOCAL = "http://localhost:4567/";
-//    private static final String BASED_URL_LOCAL = "http://10.0.2.2:4567/";
+//    private static final String BASED_URL_LOCAL = "http://localhost:4567/";
+//    private static final String BASED_URL_LOCAL = "http://10.5.134.240:4567/"; // UTB
+    private static final String BASED_URL_LOCAL = "http://10.100.0.27:4567/new/"; // Kolej
 
     public static Retrofit getClient() {
         Gson gson = new GsonBuilder()

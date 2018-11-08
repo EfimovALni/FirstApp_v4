@@ -106,10 +106,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Converter> call, Response<Converter> response) {
                 final  Converter converter = response.body();
-
-
-                Log.e("..................", converter.getName_button());
-
+                Log.e("..................", ". . From SecondActivity . .. . .");
 
             }
 
