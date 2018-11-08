@@ -19,6 +19,8 @@ public class ApiClient {
      * Code for server
      */
     private static final String BASED_URL = "https://www.videotechnik.cz/";
+    private static final String BASED_URL_LOCAL = "http://localhost:4567/";
+//    private static final String BASED_URL_LOCAL = "http://10.0.2.2:4567/";
 
     public static Retrofit getClient() {
         Gson gson = new GsonBuilder()
@@ -26,6 +28,17 @@ public class ApiClient {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASED_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        return retrofit;
+    }
+
+    public static Retrofit getClientLocal() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASED_URL_LOCAL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         return retrofit;

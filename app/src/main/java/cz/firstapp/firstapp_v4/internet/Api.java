@@ -3,6 +3,7 @@ package cz.firstapp.firstapp_v4.internet;
 import java.util.Map;
 
 import cz.firstapp.firstapp_v4.model.DataResponse;
+import cz.firstapp.firstapp_v4.secondScreen.Converter;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -14,4 +15,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("DAN/ajaxData.php")
     Call<DataResponse> getData(@FieldMap Map<String, String> fields);
+
+    @GET("new")
+    Call<Converter> getData();
+
 }

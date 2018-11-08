@@ -1,0 +1,74 @@
+{
+  "name_buttom": "New equipment",
+  "spinner": {
+    "set_prompt": "--- Please select related action ---",
+    "items": [
+      {
+        "item": "Laptop"
+      },
+      {
+        "item": "Desktop"
+      },
+      {
+        "item": "Mobile device"
+      },
+      {
+        "item": "Keyboard"
+      },
+      {
+        "item": "Mouse"
+      },
+      {
+        "item": "Monitor"
+      },
+      {
+        "item": "Others"
+      }
+    ]
+  },
+  "texts": [
+    {
+      "info_1": "Before you will send a new ticket, please check the  following steps and links."
+    },
+    {
+      "info_2": "Preferred steps to try."
+    },
+    {
+      "email": "Contact email addresses (mandatory)"
+    },
+    {
+      "phone": "Contact phone addresses (optional)"
+    },
+    {
+      "purpose": "What purpose it is intended to meet by the new LAPTOP? (mandatory)"
+    },
+    {
+      "improvements": "Responsible manager for potential improvements (full name and department)? (mandatory)"
+    },
+    {
+      "fields_filled": "All of the mandatory fields have to be filled properly."
+    }
+  ],
+  "checkbox": [
+    {
+      "under": "If you need to buy equipment which is under 200 EUR you only need to have approved the purchase by email of manager from your departure."
+    },
+    {
+      "more_than": "If you need to buy equipment which is more than 200 EUR you always have to ask your manager to fill Approval form."
+    },
+    {
+      "purchase": "Purchase of a new LAPTOP usually takes two weeks."
+    }
+  ],
+  "buttons": [
+    {
+      "attachment": "Add attachment"
+    },
+    {
+      "ticket": "Send ticket"
+    },
+    {
+      "cancel": "Cancel form"
+    }
+  ]
+}

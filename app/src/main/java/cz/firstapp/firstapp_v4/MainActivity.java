@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AdapterRecyclerView adapter;
 
+    public ArrayList<String> nameIcons = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         /** Declaration 'RecyclerView + GridLayoutManager' with 3 columns' */
         recyclerView = (RecyclerView) findViewById(R.id.rv_main);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         drawingInterface();
+
     }
 
     /**
@@ -61,7 +64,18 @@ public class MainActivity extends AppCompatActivity {
                             dataResponse.getConfiguartion().getInitialScreen().get(i).getText(),
                             dataResponse.getConfiguartion().getInitialScreen().get(i).getIcon()
                     ));
+
+                    nameIcons.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
                 }
+                Log.e("Array 'nameIcons' ", nameIcons.toString());
+
+
+
+//                for (int i = 0; i < dataResponse.getConfiguartion().getInitialScreen().size(); i++) {
+//                    Log.e(TAG, i + " " + String.valueOf(mDataFromServer.get(i).getText()));
+//                }
+
+
 
                 /** Transmitting data to Adapter RecyclerView   */
                 adapter = new AdapterRecyclerView(MainActivity.this, mDataFromServer);
