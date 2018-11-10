@@ -66,13 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     ));
                     nameIcons.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
                 }
-                Log.e("Array 'nameIcons' ", nameIcons.toString());
-
-
-//                for (int i = 0; i < dataResponse.getConfiguartion().getInitialScreen().size(); i++) {
-//                    Log.e(TAG, i + " " + String.valueOf(mDataFromServer.get(i).getText()));
-//                }
-
 
                 /** Transmitting data to Adapter RecyclerView   */
                 adapter = new AdapterRecyclerView(MainActivity.this, mDataFromServer);

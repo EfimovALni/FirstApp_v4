@@ -21,11 +21,4 @@ public class Configuration {
     public void setInitialScreen(List<Initial_screen> initial_screen) {
         this.initial_screen = initial_screen;
     }
-
-    @Override
-    public String toString() {
-        return "Configuration{" +
-                "initial_screen=" + initial_screen +
-                '}';
-    }
 }

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,9 +21,8 @@ import java.util.List;
 
 import cz.firstapp.firstapp_v4.internet.Api;
 import cz.firstapp.firstapp_v4.internet.ApiClient;
-import cz.firstapp.firstapp_v4.model.DataResponse;
-import cz.firstapp.firstapp_v4.model.Initial_screen;
-import cz.firstapp.firstapp_v4.secondScreen.Converter;
+import cz.firstapp.firstapp_v4.modelSecondScreen.*;
+import cz.firstapp.firstapp_v4.modelSecondScreen.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,13 +33,17 @@ public class SecondActivity extends AppCompatActivity {
     private ImageView ivSecondViewIcon;
     private Spinner sMenu;
     MainActivity mainActivity;
+    SecondActivity secondActivity;
+
+    //    List<Text> mText = new ArrayList<>();
+    List<Button> mButton = new ArrayList<>();
+    List<CheckBox> mCheckBox = new ArrayList<>();
+
 
     private String[] iconsHardCode = {"Laptop", "Desktop", "Mobile device", "Keyboard", "Mouse", "Monitor", "Others"};
     ArrayList<String> nameIconsForSpinner = new ArrayList<>();
 
     Api api;
-    Converter converter;
-    List<Converter> mDataFromServerLocal = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,19 +107,22 @@ public class SecondActivity extends AppCompatActivity {
      */
     private void drawingInterface() {
         api = ApiClient.getClientLocal().create(Api.class);
-        api.getData().enqueue(new Callback<Converter>() {
+        api.getData().enqueue(new Callback<SecondScreenModel>() {
             @Override
-            public void onResponse(Call<Converter> call, Response<Converter> response) {
-                final  Converter converter = response.body();
-                Log.e("..................", ". . From SecondActivity . .. . .");
+            public void onResponse(Call<SecondScreenModel> call, Response<SecondScreenModel> response) {
+                final SecondScreenModel secondActivity = response.body();
 
+                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
+                    Log.e("- - - ", String.valueOf(secondActivity.getButtonsMy().get(i)));
+                }
             }
 
             @Override
-            public void onFailure(Call<Converter> call, Throwable t) {
-
+            public void onFailure(Call<SecondScreenModel> call, Throwable t) {
+                Log.e("Err from SecondActivity", "" + t);
             }
         });
+
 
     }
 
