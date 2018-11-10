@@ -112,9 +112,30 @@ public class SecondActivity extends AppCompatActivity {
             public void onResponse(Call<SecondScreenModel> call, Response<SecondScreenModel> response) {
                 final SecondScreenModel secondActivity = response.body();
 
-                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
-                    Log.e("- - - ", String.valueOf(secondActivity.getButtonsMy().get(i)));
+                /** C.1. Start. Only for testing */
+                System.out.println(". . . . . . . . . . . START . . . . . . . . . . . .");
+                System.out.println("\n*** Spinner ***");
+                System.out.println(secondActivity.getSpinnerMy().getPromptMy());
+                for (int i = 0; i < secondActivity.getSpinnerMy().getItemsMy().size(); i++) {
+                    System.out.println(i + ". " + secondActivity.getSpinnerMy().getItemsMy().get(i).getItemMy());
                 }
+
+                System.out.println("\n*** Texts ***");
+                for (int i = 0; i < secondActivity.getTextsMy().size(); i++) {
+                    System.out.println(i + ". " + secondActivity.getTextsMy().get(i).getText());
+                }
+
+                System.out.println("\n*** Checkbox ***");
+                for (int i = 0; i < secondActivity.getCheckboxMy().size(); i++) {
+                    System.out.println(i + ". " + secondActivity.getCheckboxMy().get(i).getText());
+                }
+
+                System.out.println("\n*** Buttons ***");
+                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
+                    System.out.println(i + ". " + secondActivity.getButtonsMy().get(i).getText());
+                }
+                System.out.println(". . . . . . . . . . END . . . . . . . . . . .");
+                /** C.1. End. Only for testing */
             }
 
             @Override
