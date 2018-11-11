@@ -17,9 +17,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cz.firstapp.firstapp_v4.model.DataResponse;
 import cz.firstapp.firstapp_v4.model.Initial_screen;
-import retrofit2.Callback;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder> {
     private Context mContext;
@@ -27,7 +25,6 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
     private MainActivity mainActivity;
 
     private static final String TAG = "Res ";
-
 
 
     public void setmContext(Context mContext) {
@@ -43,12 +40,14 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         this.mData = mData;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_view, parent, false);
         return new ViewHolder(itemView);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Initial_screen example = mData.get(position);
@@ -69,6 +68,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
                 intent.putExtra("NameIco", mData.get(position).getText());
 
                 intent.putExtra("Ico", mData.get(position).getIcon()); //TODO: ---------------!
+
 
                 //  Start the Second Activity
                 mContext.startActivity(intent);

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cz.firstapp.firstapp_v4.apiMy.ApisMy;
 import cz.firstapp.firstapp_v4.internet.Api;
 import cz.firstapp.firstapp_v4.internet.ApiClient;
 import cz.firstapp.firstapp_v4.model.DataResponse;
@@ -23,6 +24,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Res ";
+
+    List<String> listApi = new ArrayList<String>();
     Api api;
     String action = "action";   //For asking server
     //    String value = "checkVersion";
@@ -44,15 +47,41 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
         drawingInterface();
-
+        downloadApis();
     }
+
+    private void downloadApis() {
+        api = ApiClient.getClientLocal().create(Api.class);
+        api.getApi().enqueue(new Callback<ApisMy>() {
+            @Override
+            public void onResponse(Call<ApisMy> call, Response<ApisMy> response) {
+                if (response.isSuccessful()) {
+                    final ApisMy apisMy = response.body();
+
+                    Log.e("APIs ", " " +  listApi.toString());
+                } else {
+                    Log.e("response ", "is not Success. BODY = " + response.body());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ApisMy> call, Throwable t) {
+                Log.e("Error from ", " " + t);
+            }
+        });
+    }
+
 
     /**
      * Get JSON data from Server + transmit data to adapter in RecyclerView ......... Start
      */
     public void drawingInterface() {
-        api = ApiClient.getClient().create(Api.class);
-        api.getData(request_Data_For_POST()).enqueue(new Callback<DataResponse>() {
+//        api = ApiClient.getClient().create(Api.class); // FOR REMOTE SERVER!
+//        api.getData(request_Data_For_POST()).enqueue(new Callback<DataResponse>() { // FOR REMOTE SERVER!
+
+        api = ApiClient.getClientLocal().create(Api.class);
+        api.getDataMainScreen().enqueue(new Callback<DataResponse>() {
             @Override
             public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
                 final DataResponse dataResponse = response.body();
@@ -61,36 +90,17 @@ public class MainActivity extends AppCompatActivity {
                  * .....Start */
                 for (int i = 0; i < dataResponse.getConfiguartion().getInitialScreen().size(); i++) {
                     mDataFromServer.add(new Initial_screen(
-                            dataResponse.getConfiguartion().getInitialScreen().get(i).getColor(),
+                            dataResponse.getConfiguartion().getInitialScreen().get(i).getApi(),
                             dataResponse.getConfiguartion().getInitialScreen().get(i).getText(),
                             dataResponse.getConfiguartion().getInitialScreen().get(i).getIcon()
                     ));
                     nameIcons.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
+
+                    /** Fill List<> of APIs */
+                        listApi.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getApi());
                 }
 
-                System.out.println("----------------> " + nameIcons.toString());
-
-                // TODO: тупой костыль, считаем количество букв в названии иконки и потом добавляем всем пробелы. То бишь выравниваем длинну строки у всех иконок. Это ядл того что бы на главном экране не бвло белый полос. Тупо, но пока пойдет.
-                int len = 0, razn = 0;
-                ArrayList<Integer> listLen = new ArrayList<>();
-                for (int i = 0; i < nameIcons.size(); i++) {
-                    System.out.println(dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length() + " " +dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
-                    listLen.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length());
-                }
-                System.out.println(listLen);
-                len = Collections.max(listLen);
-                System.out.println(len);
-
-                for (int i = 0; i < nameIcons.size(); i++) {
-                    if ( dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length() < len) {
-                        razn = dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length() - len;
-                        for (int j = 0; j < razn; j++) {
-                            String f = dataResponse.getConfiguartion().getInitialScreen().get(i).getText() + "*";
-                            System.out.println(f);
-                        }
-                    }
-                }
-
+                System.out.println("Size list of APIs: " + listApi.size() + "\n\t" + listApi);
 
 
                 /** Transmitting data to Adapter RecyclerView   */

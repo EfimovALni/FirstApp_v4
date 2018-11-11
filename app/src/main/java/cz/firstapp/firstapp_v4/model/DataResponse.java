@@ -12,7 +12,7 @@ package cz.firstapp.firstapp_v4.model;
 public class DataResponse {
     private String status;
     private Float actual_version;
-    private Configuration configuartion;    //TODO: change in JSON 'configuartion' to 'configuration'
+    private Configuration configuration;    //TODO: change in JSON 'configuartion' to 'configuration'
 
     public String getStatus() {
         return status;
@@ -31,19 +31,10 @@ public class DataResponse {
     }
 
     public Configuration getConfiguartion() {
-        return configuartion;
+        return configuration;
     }
 
     public void setConfiguartion(Configuration configuartion) {
-        this.configuartion = configuartion;
-    }
-
-    @Override
-    public String toString() {
-        return "DataResponse{" +
-                "status='" + status + '\'' +
-                ", actual_version=" + actual_version +
-                ", configuartion=" + configuartion +
-                '}';
+        this.configuration = configuartion;
     }
 }

@@ -4,17 +4,19 @@ package cz.firstapp.firstapp_v4.modelSecondScreen;
 import java.util.List;
 
 public class SecondScreenModel{
-    private SpinnerMy spinnerMy;
+    private List<SpinnerMy> spinnerMy;
     private List<TextsMy> textsMy;
     private List<CheckboxMy> checkboxMy;
     private List<ButtonsMy> buttonsMy;
 
-    public SpinnerMy getSpinnerMy(){
+    public List<SpinnerMy> getSpinnerMy() {
         return spinnerMy;
     }
-    public void setSpinnerMy(SpinnerMy input){
-        this.spinnerMy = input;
+
+    public void setSpinnerMy(List<SpinnerMy> spinnerMy) {
+        this.spinnerMy = spinnerMy;
     }
+
     public List<TextsMy> getTextsMy(){
         return textsMy;
     }

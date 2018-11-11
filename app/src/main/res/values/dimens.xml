@@ -2,6 +2,7 @@
 <resources>
     <dimen name="padding_main_activity">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="textSize_info">20sp</dimen>
-    <dimen name="margin_before_element">30dp</dimen>
+    <dimen name="textSize_info">16sp</dimen>
+    <dimen name="margin_before_element">25dp</dimen>
+    <dimen name="text_size_hint">12sp</dimen>
 </resources>

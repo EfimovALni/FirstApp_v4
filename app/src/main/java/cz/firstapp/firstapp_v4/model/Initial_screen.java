@@ -10,22 +10,22 @@ package cz.firstapp.firstapp_v4.model;
  */
 
 public class Initial_screen {
-    private String color;
+    private String api;
     private String text;
     private String icon;
 
-    public Initial_screen(String color, String text, String icon) {
-        this.color = color;
+    public Initial_screen(String api, String text, String icon) {
+        this.api = api;
         this.text = text;
         this.icon = icon;
     }
 
-    public String getColor() {
-        return color;
+    public String getApi() {
+        return api;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setApi(String api) {
+        this.api = api;
     }
 
     public String getText() {
@@ -42,14 +42,5 @@ public class Initial_screen {
 
     public void setIcon(String icon) {
         this.icon = icon;
-    }
-
-    @Override
-    public String toString() {
-        return "Initial_screen{" +
-                "color='" + color + '\'' +
-                ", text='" + text + '\'' +
-                ", icon='" + icon + '\'' +
-                '}';
     }
 }

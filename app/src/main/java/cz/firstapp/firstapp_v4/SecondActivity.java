@@ -118,12 +118,15 @@ public class SecondActivity extends AppCompatActivity {
             public void onResponse(Call<SecondScreenModel> call, Response<SecondScreenModel> response) {
                 final SecondScreenModel secondActivity = response.body();
 
-                /** Fill String for 'prompt' - first item in Spinnr. */
-                spinnerPrompt = secondActivity.getSpinnerMy().getPromptMy();
+
+
+
+//                /** Fill String for 'prompt' - first item in Spinnr. */
+//                spinnerPrompt = secondActivity.getSpinnerMy().getPromptMy();
 
                 /** Fill List<> of items for component 'Spinner' */
-                for (int i = 0; i < secondActivity.getSpinnerMy().getItemsMy().size(); i++) {
-                    listSpinner.add(getString(R.string.spinnerFirstLine) + " " + secondActivity.getSpinnerMy().getItemsMy().get(i).getItemMy());
+                for (int i = 0; i < secondActivity.getSpinnerMy().size(); i++) {
+                    listSpinner.add(secondActivity.getSpinnerMy().get(i).getItemMy());
                 }
 
                 /** Fill List<> of texts for component 'Text' */
@@ -140,6 +143,7 @@ public class SecondActivity extends AppCompatActivity {
                 for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
                     listButtons.add(secondActivity.getButtonsMy().get(i).getText());
                 }
+
 
 //                Com. 2. Start. Filling the Spinner
                 // Шаблоны для выпадающего списка
@@ -209,34 +213,29 @@ public class SecondActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
-
-                /** C.1. Start. Only for testing */
-                System.out.println(". . . . . . . . . . . START . . . . . . . . . . . .");
-                System.out.println("\n*** Spinner ***");
-                System.out.println(secondActivity.getSpinnerMy().getPromptMy());
-                for (int i = 0; i < secondActivity.getSpinnerMy().getItemsMy().size(); i++) {
-                    System.out.println(i + ". " + secondActivity.getSpinnerMy().getItemsMy().get(i).getItemMy());
-                }
-
-                System.out.println("\n*** Texts ***");
-                for (int i = 0; i < secondActivity.getTextsMy().size(); i++) {
-                    System.out.println(i + ". " + secondActivity.getTextsMy().get(i).getText());
-                }
-
-                System.out.println("\n*** Checkbox ***");
-                for (int i = 0; i < secondActivity.getCheckboxMy().size(); i++) {
-                    System.out.println(i + ". " + secondActivity.getCheckboxMy().get(i).getText());
-                }
-
-                System.out.println("\n*** Buttons ***");
-                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
-                    System.out.println(i + ". " + secondActivity.getButtonsMy().get(i).getText());
-                }
-                System.out.println(". . . . . . . . . . END . . . . . . . . . . .");
-                /** C.1. End. Only for testing */
+//                /** C.1. Start. Only for testing */
+//                System.out.println(". . . . . . . . . . . START . . . . . . . . . . . .");
+//                System.out.println("\n*** Spinner ***");
+//                for (int i = 0; i < secondActivity.getSpinnerMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getSpinnerMy().get(i).getItemMy());
+//                }
+//
+//                System.out.println("\n*** Texts ***");
+//                for (int i = 0; i < secondActivity.getTextsMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getTextsMy().get(i).getText());
+//                }
+//
+//                System.out.println("\n*** Checkbox ***");
+//                for (int i = 0; i < secondActivity.getCheckboxMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getCheckboxMy().get(i).getText());
+//                }
+//
+//                System.out.println("\n*** Buttons ***");
+//                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getButtonsMy().get(i).getText());
+//                }
+//                System.out.println(". . . . . . . . . . END . . . . . . . . . . .");
+//                /** C.1. End. Only for testing */
             }
 
             @Override
@@ -254,10 +253,15 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 /** Change color first row on Spinner*/
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
-                ((TextView) parent.getChildAt(0)).setTextSize(20);
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+                ((TextView) parent.getChildAt(0)).setTextSize(18);
 
-                Toast.makeText(getBaseContext(), parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+
+                if (parent.getItemAtPosition(position).equals("--- Please select related action ---")) {
+//                    do nothing
+                } else {
+                    Toast.makeText(getBaseContext(), parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

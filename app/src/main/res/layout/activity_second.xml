@@ -140,6 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_email"
             android:hint="Enter email"
+            android:textSize="@dimen/text_size_hint"
             android:inputType="textEmailAddress"/>
 
         <TextView
@@ -157,6 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_phone"
             android:hint="Enter phone"
+            android:textSize="@dimen/text_size_hint"
             android:inputType="phone"/>
 
         <TextView
@@ -173,6 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_purpose"
+            android:textSize="@dimen/text_size_hint"
             android:hint="Enter purpose" />
 
         <TextView
@@ -189,6 +192,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_improvements"
+            android:textSize="@dimen/text_size_hint"
             android:hint="Enter name of responsible manager" />
 
         <Button
