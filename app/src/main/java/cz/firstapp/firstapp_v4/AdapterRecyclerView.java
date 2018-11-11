@@ -23,8 +23,11 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
     private Context mContext;
     private List<Initial_screen> mData;
     private MainActivity mainActivity;
+//    public String apiPresedButton;
 
     private static final String TAG = "Res ";
+
+    GetAPI getAPI = new GetAPI();
 
 
     public void setmContext(Context mContext) {
@@ -70,14 +73,27 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
                 intent.putExtra("Ico", mData.get(position).getIcon()); //TODO: ---------------!
 
 
-                //  Start the Second Activity
+                // Вычисление API нажатой кнопки (при нажатии)
                 mContext.startActivity(intent);
+
+                // Получение API нажатой кнопки...
+                String st = mData.get(position).getApi();
+                getAPI.setPressedAPI(st);
+//                apiPresedButton = mData.get(position).getApi();
+                Log.e("-----------------", getAPI.getPressedAPI());
             }
         });
-
-
     }
 
+
+    /**
+     * Method for getting 'API of pressed button'
+     */
+//    private void pressedAPI() {
+//        String apiPressedBtn;
+//        apiPressedBtn = mData.get(onBindViewHolder());
+////        Log.e("API from method: ", api);
+//    }
     @Override
     public int getItemCount() {
         return mData == null ? 0 : mData.size();

@@ -3,6 +3,7 @@ package cz.firstapp.firstapp_v4.internet;
 import java.util.Map;
 
 import cz.firstapp.firstapp_v4.apiMy.ApisMy;
+import cz.firstapp.firstapp_v4.apiSecurity.ApiSecurity;
 import cz.firstapp.firstapp_v4.model.DataResponse;
 import cz.firstapp.firstapp_v4.modelSecondScreen.SecondScreenModel;
 import retrofit2.Call;
@@ -23,6 +24,9 @@ public interface Api {
 
     @GET("data")
     Call<DataResponse> getDataMainScreen();
+
+    @GET("security")
+    Call<ApiSecurity> getDataSecurity();
 
     @GET("new")
     Call<SecondScreenModel> getData();

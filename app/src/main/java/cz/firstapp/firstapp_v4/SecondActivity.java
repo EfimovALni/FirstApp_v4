@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.firstapp.firstapp_v4.apiSecurity.ApiSecurity;
 import cz.firstapp.firstapp_v4.internet.Api;
 import cz.firstapp.firstapp_v4.internet.ApiClient;
 import cz.firstapp.firstapp_v4.modelSecondScreen.SecondScreenModel;
@@ -31,7 +32,7 @@ import retrofit2.Response;
 
 public class SecondActivity extends AppCompatActivity {
     private static final String TAG = "Second screen ";
-    private TextView tvNameIco, tvInfo_1, tvEmail, tvPhone, tvPurpose,tvImprovements;
+    private TextView tvNameIco, tvInfo_1, tvEmail, tvPhone, tvPurpose, tvImprovements;
     private ImageView ivSecondViewIcon;
     private Spinner sMenu;
     private Button bPreferred, bAttachment, bTicket, bCancel;
@@ -46,8 +47,11 @@ public class SecondActivity extends AppCompatActivity {
     List<String> listButtons = new ArrayList<String>();
     List<String> listTexts = new ArrayList<String>();
     List<String> listCheckboxes = new ArrayList<String>();
+    MainActivity mainActivity;
+    AdapterRecyclerView adapterRecyclerView;
 
     Api api;
+    GetAPI getAPI = new GetAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,113 +109,134 @@ public class SecondActivity extends AppCompatActivity {
 //
 //        // Устанвка события при выборе элемента из списка
 //        sMenu.setOnItemSelectedListener(onItemSelectedListener());
-        drawingInterface();
+        drawingSecondScreen();
+
+
     }
 
     /**
      * Get JSON data from LOCAL Server + transmit data to adapter in RecyclerView ......... Start
      */
-    private void drawingInterface() {
-        api = ApiClient.getClientLocal().create(Api.class);
-        api.getData().enqueue(new Callback<SecondScreenModel>() {
-            @Override
-            public void onResponse(Call<SecondScreenModel> call, Response<SecondScreenModel> response) {
-                final SecondScreenModel secondActivity = response.body();
+    private void drawingSecondScreen() {
 
+        // Drawing according pressed button = according API
+        // Представим чито гипотетически что я получил API и срасниваюего черехз СВИЧкейс, и подгружаю нужный ЖСОН ссервера.
+//        String apiPressedButton = "security";
+        String apiPressedButton = "new";
 
+        switch (apiPressedButton) {
+            case "new":
+                System.out.println("1   > > > > > new");
+                api = ApiClient.getClientLocal().create(Api.class);
+                api.getData().enqueue(new Callback<SecondScreenModel>() {
+                    @Override
+                    public void onResponse(Call<SecondScreenModel> call, Response<SecondScreenModel> response) {
+                        final SecondScreenModel secondActivity = response.body();
 
+                        /** Fill List<> of items for component 'Spinner' */
+                        for (int i = 0; i < secondActivity.getSpinnerMy().size(); i++) {
+                            listSpinner.add(secondActivity.getSpinnerMy().get(i).getItemMy());
+                        }
 
-//                /** Fill String for 'prompt' - first item in Spinnr. */
-//                spinnerPrompt = secondActivity.getSpinnerMy().getPromptMy();
+                        /** Fill List<> of texts for component 'Text' */
+                        for (int i = 0; i < secondActivity.getTextsMy().size(); i++) {
+                            listTexts.add(secondActivity.getTextsMy().get(i).getText());
+                        }
 
-                /** Fill List<> of items for component 'Spinner' */
-                for (int i = 0; i < secondActivity.getSpinnerMy().size(); i++) {
-                    listSpinner.add(secondActivity.getSpinnerMy().get(i).getItemMy());
-                }
+                        /** Fill List<> of items for  component 'Checkbox' */
+                        for (int i = 0; i < secondActivity.getCheckboxMy().size(); i++) {
+                            listCheckboxes.add(secondActivity.getCheckboxMy().get(i).getText());
+                        }
 
-                /** Fill List<> of texts for component 'Text' */
-                for (int i = 0; i < secondActivity.getTextsMy().size(); i++) {
-                    listTexts.add(secondActivity.getTextsMy().get(i).getText());
-                }
-
-                /** Fill List<> of items for  component 'Checkbox' */
-                for (int i = 0; i < secondActivity.getCheckboxMy().size(); i++) {
-                    listCheckboxes.add(secondActivity.getCheckboxMy().get(i).getText());
-                }
-
-                /** Fill List<> of items for component 'Button' */
-                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
-                    listButtons.add(secondActivity.getButtonsMy().get(i).getText());
-                }
+                        /** Fill List<> of items for component 'Button' */
+                        for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
+                            listButtons.add(secondActivity.getButtonsMy().get(i).getText());
+                        }
 
 
 //                Com. 2. Start. Filling the Spinner
-                // Шаблоны для выпадающего списка
-                itemMenuSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        // Шаблоны для выпадающего списка
+                        itemMenuSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                //  Установка адаптера
-                sMenu.setAdapter(itemMenuSpinner);
+                        //  Установка адаптера
+                        sMenu.setAdapter(itemMenuSpinner);
 
-                //  Задаем заголовок списка Spinner
-                sMenu.setPrompt(spinnerPrompt);
+                        //  Задаем заголовок списка Spinner
+                        sMenu.setPrompt(spinnerPrompt);
 //                sMenu.setSelection(0);    // Устанка какого то элемента из списка, по умолчинию в первой строке.
 
-                // Устанвка события при выборе элемента из списка
-                sMenu.setOnItemSelectedListener(onItemSelectedListener());
+                        // Устанвка события при выборе элемента из списка
+                        sMenu.setOnItemSelectedListener(onItemSelectedListener());
 //                Com. 2. End. Filling the Spinner
 
 
 //                Com. 3. Start. Filling the TextView 'tv_info_1'.
-                tvInfo_1.setText(secondActivity.getTextsMy().get(0).getText());
+                        tvInfo_1.setText(secondActivity.getTextsMy().get(0).getText());
 
 //                Com. 4. Start. Filling the Button 'b_preferred'
-                bPreferred.setText(secondActivity.getButtonsMy().get(0).getText());
+                        bPreferred.setText(secondActivity.getButtonsMy().get(0).getText());
 
 //                Com. 5. Start. Filling the Checkbox 'cb_under'
-                cbUnder.setText(secondActivity.getCheckboxMy().get(0).getText());
+                        cbUnder.setText(secondActivity.getCheckboxMy().get(0).getText());
 //                Com. 6. Start. Filling the Checkbox 'cb_more_than'
-                cbMoreThan.setText(secondActivity.getCheckboxMy().get(1).getText());
+                        cbMoreThan.setText(secondActivity.getCheckboxMy().get(1).getText());
 //                Com. 7. Start. Filling the Checkbox 'cb_purchase'
-                cbPurchase.setText(secondActivity.getCheckboxMy().get(2).getText());
+                        cbPurchase.setText(secondActivity.getCheckboxMy().get(2).getText());
 
 //                Com. 8. Start. Filling the TextView 'tv_email'
-                tvEmail.setText(secondActivity.getTextsMy().get(2).getText());
+                        tvEmail.setText(secondActivity.getTextsMy().get(2).getText());
 //                Com. 9. Start. Filling the TextView 'tv_phone'
-                tvPhone.setText(secondActivity.getTextsMy().get(3).getText());
+                        tvPhone.setText(secondActivity.getTextsMy().get(3).getText());
 //                Com. 10. Start. Filling the TextView 'tv_purpose'
-                tvPurpose.setText(secondActivity.getTextsMy().get(4).getText());
+                        tvPurpose.setText(secondActivity.getTextsMy().get(4).getText());
 //                Com. 11. Start. Filling the TextView 'tv_improvements'
-                tvImprovements.setText(secondActivity.getTextsMy().get(5).getText());
+                        tvImprovements.setText(secondActivity.getTextsMy().get(5).getText());
 
 //                Com. 12. Start. Filling the Button 'b_preferred'
-                bAttachment.setText(secondActivity.getButtonsMy().get(1).getText());
+                        bAttachment.setText(secondActivity.getButtonsMy().get(1).getText());
 //                Com. 12. Start. Filling the Button 'b_preferred'
-                bTicket.setText(secondActivity.getButtonsMy().get(2).getText());
+                        bTicket.setText(secondActivity.getButtonsMy().get(2).getText());
 //                Com. 12. Start. Filling the Button 'b_preferred'
-                bCancel.setText(secondActivity.getButtonsMy().get(3).getText());
+                        bCancel.setText(secondActivity.getButtonsMy().get(3).getText());
 
-                // Если нажата кнопка "Preferred steps to try" ПОКА - просто выдать сообщение!
-                bPreferred.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getBaseContext(),
-                                "Preferred steps to try order equipment:\n" +
-                                "1. Thinking\n" +
-                                "2. Discussing\n" +
-                                "3. Do you need this equipment? \n" +
-                                "4. Doubting?\n" +
-                                "4. Go to step 1",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        // Если нажата кнопка "Preferred steps to try" ПОКА - просто выдать сообщение!
+                        bPreferred.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getBaseContext(),
+                                        "Preferred steps to try order equipment:\n" +
+                                                "1. Thinking\n" +
+                                                "2. Discussing\n" +
+                                                "3. Do you need this equipment? \n" +
+                                                "4. Doubting?\n" +
+                                                "4. Go to step 1",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                // Если нажата кнопка "Send ticket" ПОКА - просто выдать сообщение!
-                bTicket.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getBaseContext(), secondActivity.getTextsMy().get(6).getText(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        // Если нажата кнопка "Send ticket" ПОКА - просто выдать сообщение!
+                        bTicket.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getBaseContext(), secondActivity.getTextsMy().get(6).getText(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        // Если нажата кнопка "Add attachment" ПОКА - просто выдать сообщение!
+                        bAttachment.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String sTemp = secondActivity.getButtonsMy().get(1).getText();
+                                Toast.makeText(getBaseContext(), "Was pressed button: \n" + sTemp, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        // Если нажата кнопка "Cancel form" ПОКА - просто выдать сообщение!
+                        bCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String sTemp = secondActivity.getButtonsMy().get(3).getText();
+                                Toast.makeText(getBaseContext(), "Was pressed button: \n" + sTemp, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
 //                /** C.1. Start. Only for testing */
 //                System.out.println(". . . . . . . . . . . START . . . . . . . . . . . .");
@@ -236,15 +261,163 @@ public class SecondActivity extends AppCompatActivity {
 //                }
 //                System.out.println(". . . . . . . . . . END . . . . . . . . . . .");
 //                /** C.1. End. Only for testing */
-            }
+                    }
 
-            @Override
-            public void onFailure(Call<SecondScreenModel> call, Throwable t) {
-                Log.e("Err from SecondActivity", "" + t);
-            }
-        });
+                    @Override
+                    public void onFailure(Call<SecondScreenModel> call, Throwable t) {
+                        Log.e("Err from SecondActivity", "" + t);
+                    }
+                });
+                break;
+            case "security":
+                System.out.println("2  > > > > > security");
+                api = ApiClient.getClientLocal().create(Api.class);
+                api.getDataSecurity().enqueue(new Callback<ApiSecurity>() {
+                    @Override
+                    public void onResponse(Call<ApiSecurity> call, Response<ApiSecurity> response) {
+                        final ApiSecurity apiSecurity = response.body();
+
+                        /** Fill List<> of items for component 'Spinner' */
+                        for (int i = 0; i < apiSecurity.getSpinnerMy().size(); i++) {
+                            listSpinner.add(apiSecurity.getSpinnerMy().get(i).getItemMy());
+                        }
+
+                        /** Fill List<> of texts for component 'Text' */
+                        for (int i = 0; i < apiSecurity.getTextsMy().size(); i++) {
+                            listTexts.add(apiSecurity.getTextsMy().get(i).getText());
+                        }
+
+                        /** Fill List<> of items for  component 'Checkbox' */
+                        for (int i = 0; i < apiSecurity.getCheckboxMy().size(); i++) {
+                            listCheckboxes.add(apiSecurity.getCheckboxMy().get(i).getText());
+                        }
+
+                        /** Fill List<> of items for component 'Button' */
+                        for (int i = 0; i < apiSecurity.getButtonsMy().size(); i++) {
+                            listButtons.add(apiSecurity.getButtonsMy().get(i).getText());
+                        }
+
+
+//                Com. 2. Start. Filling the Spinner
+                        // Шаблоны для выпадающего списка
+                        itemMenuSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        //  Установка адаптера
+                        sMenu.setAdapter(itemMenuSpinner);
+
+                        //  Задаем заголовок списка Spinner
+                        sMenu.setPrompt(spinnerPrompt);
+//                sMenu.setSelection(0);    // Устанка какого то элемента из списка, по умолчинию в первой строке.
+
+                        // Устанвка события при выборе элемента из списка
+                        sMenu.setOnItemSelectedListener(onItemSelectedListener());
+//                Com. 2. End. Filling the Spinner
+
+
+//                Com. 3. Start. Filling the TextView 'tv_info_1'.
+                        tvInfo_1.setText(apiSecurity.getTextsMy().get(0).getText());
+
+//                Com. 4. Start. Filling the Button 'b_preferred'
+                        bPreferred.setText(apiSecurity.getButtonsMy().get(0).getText());
+
+//                Com. 5. Start. Filling the Checkbox 'cb_under'
+                        cbUnder.setText(apiSecurity.getCheckboxMy().get(0).getText());
+//                Com. 6. Start. Filling the Checkbox 'cb_more_than'
+                        cbMoreThan.setText(apiSecurity.getCheckboxMy().get(1).getText());
+//                Com. 7. Start. Filling the Checkbox 'cb_purchase'
+                        cbPurchase.setText(apiSecurity.getCheckboxMy().get(2).getText());
+
+//                Com. 8. Start. Filling the TextView 'tv_email'
+                        tvEmail.setText(apiSecurity.getTextsMy().get(2).getText());
+//                Com. 9. Start. Filling the TextView 'tv_phone'
+                        tvPhone.setText(apiSecurity.getTextsMy().get(3).getText());
+//                Com. 10. Start. Filling the TextView 'tv_purpose'
+                        tvPurpose.setText(apiSecurity.getTextsMy().get(4).getText());
+//                Com. 11. Start. Filling the TextView 'tv_improvements'
+                        tvImprovements.setText(apiSecurity.getTextsMy().get(5).getText());
+
+//                Com. 12. Start. Filling the Button 'b_preferred'
+                        bAttachment.setText(apiSecurity.getButtonsMy().get(1).getText());
+//                Com. 12. Start. Filling the Button 'b_preferred'
+                        bTicket.setText(apiSecurity.getButtonsMy().get(2).getText());
+//                Com. 12. Start. Filling the Button 'b_preferred'
+                        bCancel.setText(apiSecurity.getButtonsMy().get(3).getText());
+
+                        // Если нажата кнопка "Preferred steps to try" ПОКА - просто выдать сообщение!
+                        bPreferred.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getBaseContext(),
+                                        "Preferred steps to try order equipment:\n" +
+                                                "1. Thinking\n" +
+                                                "2. Discussing\n" +
+                                                "3. Do you need this equipment? \n" +
+                                                "4. Doubting?\n" +
+                                                "4. Go to step 1",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        // Если нажата кнопка "Send ticket" ПОКА - просто выдать сообщение!
+                        bTicket.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getBaseContext(), apiSecurity.getTextsMy().get(6).getText(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        // Если нажата кнопка "Add attachment" ПОКА - просто выдать сообщение!
+                        bAttachment.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String sTemp = apiSecurity.getButtonsMy().get(1).getText();
+                                Toast.makeText(getBaseContext(), "Was pressed button: \n" + sTemp, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        // Если нажата кнопка "Cancel form" ПОКА - просто выдать сообщение!
+                        bCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String sTemp = apiSecurity.getButtonsMy().get(3).getText();
+                                Toast.makeText(getBaseContext(), "Was pressed button: \n" + sTemp, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+//                /** C.1. Start. Only for testing */
+//                System.out.println(". . . . . . . . . . . START . . . . . . . . . . . .");
+//                System.out.println("\n*** Spinner ***");
+//                for (int i = 0; i < secondActivity.getSpinnerMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getSpinnerMy().get(i).getItemMy());
+//                }
+//
+//                System.out.println("\n*** Texts ***");
+//                for (int i = 0; i < secondActivity.getTextsMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getTextsMy().get(i).getText());
+//                }
+//
+//                System.out.println("\n*** Checkbox ***");
+//                for (int i = 0; i < secondActivity.getCheckboxMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getCheckboxMy().get(i).getText());
+//                }
+//
+//                System.out.println("\n*** Buttons ***");
+//                for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
+//                    System.out.println(i + ". " + secondActivity.getButtonsMy().get(i).getText());
+//                }
+//                System.out.println(". . . . . . . . . . END . . . . . . . . . . .");
+//                /** C.1. End. Only for testing */
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApiSecurity> call, Throwable t) {
+                        Log.e("Err from SecondActivity", "" + t);
+                    }
+                });
+
+                break;
+            default:
+                break;
+        }
     }
-
 
 
     // Метод устанавлювающий событие при выборе элемента из списка

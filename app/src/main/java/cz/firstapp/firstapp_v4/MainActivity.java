@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                     /** Fill List<> of APIs */
                         listApi.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getApi());
+
                 }
 
                 System.out.println("Size list of APIs: " + listApi.size() + "\n\t" + listApi);
