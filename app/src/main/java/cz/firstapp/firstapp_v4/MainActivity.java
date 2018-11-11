@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         /** Declaration 'RecyclerView + GridLayoutManager' with 3 columns' */
         recyclerView = (RecyclerView) findViewById(R.id.rv_main);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
         drawingInterface();
 
@@ -66,6 +67,31 @@ public class MainActivity extends AppCompatActivity {
                     ));
                     nameIcons.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
                 }
+
+                System.out.println("----------------> " + nameIcons.toString());
+
+                // TODO: тупой костыль, считаем количество букв в названии иконки и потом добавляем всем пробелы. То бишь выравниваем длинну строки у всех иконок. Это ядл того что бы на главном экране не бвло белый полос. Тупо, но пока пойдет.
+                int len = 0, razn = 0;
+                ArrayList<Integer> listLen = new ArrayList<>();
+                for (int i = 0; i < nameIcons.size(); i++) {
+                    System.out.println(dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length() + " " +dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
+                    listLen.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length());
+                }
+                System.out.println(listLen);
+                len = Collections.max(listLen);
+                System.out.println(len);
+
+                for (int i = 0; i < nameIcons.size(); i++) {
+                    if ( dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length() < len) {
+                        razn = dataResponse.getConfiguartion().getInitialScreen().get(i).getText().length() - len;
+                        for (int j = 0; j < razn; j++) {
+                            String f = dataResponse.getConfiguartion().getInitialScreen().get(i).getText() + "*";
+                            System.out.println(f);
+                        }
+                    }
+                }
+
+
 
                 /** Transmitting data to Adapter RecyclerView   */
                 adapter = new AdapterRecyclerView(MainActivity.this, mDataFromServer);

@@ -4,6 +4,7 @@
     <string name="TitleNotInternetConnection">No the Internet connection</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_second">SecondActivity</string>
+    <string name="spinnerFirstLine">New equipment -</string>
 </resources>
 
 
