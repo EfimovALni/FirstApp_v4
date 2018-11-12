@@ -43,7 +43,8 @@
                 android:gravity="center"
                 android:text="Name ico"
                 android:textColor="@color/colorWhite"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </RelativeLayout>
 
         <View

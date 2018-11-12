@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
     List<Initial_screen> mDataFromServer = new ArrayList<>();
     RecyclerView recyclerView;
     AdapterRecyclerView adapter;
-
     public ArrayList<String> nameIcons = new ArrayList<>();
+    public List<String> listNameBtn = new ArrayList<>();
+    public List<Integer> listNameBtnSize = new ArrayList<>();
 
 
     @Override
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         /** Declaration 'RecyclerView + GridLayoutManager' with 3 columns' */
         recyclerView = (RecyclerView) findViewById(R.id.rv_main);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        recyclerView.setLayoutManager(
+                new GridLayoutManager(this,  4, 1, false));
 
         drawingInterface();
         downloadApis();
@@ -62,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Log.e("response ", "is not Success. BODY = " + response.body());
                 }
-
             }
 
             @Override
@@ -98,10 +99,19 @@ public class MainActivity extends AppCompatActivity {
 
                     /** Fill List<> of APIs */
                         listApi.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getApi());
+                        listNameBtn.add(dataResponse.getConfiguartion().getInitialScreen().get(i).getText());
 
                 }
+                Log.e("-----> ", "" + listNameBtn);
+                int max = 0;
+                for (int i = 0; i < listApi.size(); i++) {
+                    int iLenTemp = listApi.get(i).length();
+                    listNameBtnSize.add(iLenTemp);
+                }
+                Log.e(".... ", " " + listNameBtnSize);
 
-                System.out.println("Size list of APIs: " + listApi.size() + "\n\t" + listApi);
+                System.out.println(getMax(listNameBtnSize));
+
 
 
                 /** Transmitting data to Adapter RecyclerView   */
@@ -116,6 +126,25 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Error from ", "api.getData(request_Data_For_POST())... " + t);
             }
         });
+    }
+
+    // TODO: Костыль, ИСПРАВИТЬ! Функция возвращает разницу между длинным названием кнокуи и более коротким. Нужно что бы забить пробелами. ЧТо бы на галвном экране не было полосы...
+    // Function to find maximum value in an unsorted list in Java
+    public static Integer getMax(List<Integer> list)
+    {
+        if (list == null || list.size() == 0)
+            return Integer.MIN_VALUE;
+
+        return Collections.max(list);
+    }
+
+    // TODO: Костыль, ИСПРАВИТЬ! Функция возвращает разницу между длинным названием кнокуи и более коротким. Нужно что бы забить пробелами. ЧТо бы на галвном экране не было полосы...
+    public static Integer getMaxMinusMin(List<Integer> list)
+    {
+        if (list == null || list.size() == 0)
+            return Integer.MIN_VALUE;
+
+        return Collections.max(list);
     }
 
 

@@ -39,6 +39,7 @@ public class SecondActivity extends AppCompatActivity {
     private CheckBox cbUnder, cbMoreThan, cbPurchase;
     private EditText etEmail, etPhone, etPurpose, etImprovements;
     private ScrollView svSecondScreen;
+    public String apiPressedButton;
 
 
     String spinnerPrompt;
@@ -51,53 +52,55 @@ public class SecondActivity extends AppCompatActivity {
     AdapterRecyclerView adapterRecyclerView;
 
     Api api;
-    GetAPI getAPI = new GetAPI();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_second);
 
 //        svSecondScreen = (ScrollView) findViewById(R.id.sv_second_screen);
-        tvNameIco = (TextView) findViewById(R.id.tv_second_view_name_ico);
-        ivSecondViewIcon = (ImageView) findViewById(R.id.iv_second_view_ico);
-        sMenu = (Spinner) findViewById(R.id.s_menu);
-        tvInfo_1 = (TextView) findViewById(R.id.tv_info_1);
-        bPreferred = (Button) findViewById(R.id.b_preferred);
-        cbUnder = (CheckBox) findViewById(R.id.cb_under);
-        cbMoreThan = (CheckBox) findViewById(R.id.cb_more_than);
-        cbPurchase = (CheckBox) findViewById(R.id.cb_purchase);
+            tvNameIco = (TextView) findViewById(R.id.tv_second_view_name_ico);
+            ivSecondViewIcon = (ImageView) findViewById(R.id.iv_second_view_ico);
+            sMenu = (Spinner) findViewById(R.id.s_menu);
+            tvInfo_1 = (TextView) findViewById(R.id.tv_info_1);
+            bPreferred = (Button) findViewById(R.id.b_preferred);
+            cbUnder = (CheckBox) findViewById(R.id.cb_under);
+            cbMoreThan = (CheckBox) findViewById(R.id.cb_more_than);
+            cbPurchase = (CheckBox) findViewById(R.id.cb_purchase);
 
-        tvEmail = (TextView) findViewById(R.id.tv_email);
-        tvPhone = (TextView) findViewById(R.id.tv_phone);
-        tvPurpose = (TextView) findViewById(R.id.tv_purpose);
-        tvImprovements = (TextView) findViewById(R.id.tv_improvements);
+            tvEmail = (TextView) findViewById(R.id.tv_email);
+            tvPhone = (TextView) findViewById(R.id.tv_phone);
+            tvPurpose = (TextView) findViewById(R.id.tv_purpose);
+            tvImprovements = (TextView) findViewById(R.id.tv_improvements);
 
-        etEmail = (EditText) findViewById(R.id.et_email);
-        etPhone = (EditText) findViewById(R.id.et_phone);
-        etPurpose = (EditText) findViewById(R.id.et_purpose);
-        etImprovements = (EditText) findViewById(R.id.et_improvements);
+            etEmail = (EditText) findViewById(R.id.et_email);
+            etPhone = (EditText) findViewById(R.id.et_phone);
+            etPurpose = (EditText) findViewById(R.id.et_purpose);
+            etImprovements = (EditText) findViewById(R.id.et_improvements);
 
-        bAttachment = (Button) findViewById(R.id.b_attachment);
-        bTicket = (Button) findViewById(R.id.b_ticket);
-        bCancel = (Button) findViewById(R.id.b_cancel);
+            bAttachment = (Button) findViewById(R.id.b_attachment);
+            bTicket = (Button) findViewById(R.id.b_ticket);
+            bCancel = (Button) findViewById(R.id.b_cancel);
 
 
-        //  Receive data
-        Intent intent = getIntent();
-        String nameIco = intent.getExtras().getString("NameIco");    // From big letter, because it 'Key'
-        String ivSecondViewIc = intent.getExtras().getString("Ico");    // From big letter, because it 'Key'
+            //  Receive data
+            Intent intent = getIntent();
+            String nameIco = intent.getExtras().getString("NameIco");    // From big letter, because it 'Key'
+            String ivSecondViewIc = intent.getExtras().getString("Ico");    // From big letter, because it 'Key'
+            apiPressedButton = intent.getExtras().getString("api");
 
-        /** Convert Based64 to image*/
-        String str_icon = ivSecondViewIc.replace("data:image/png;base64,", "");
-        byte[] decodedString = Base64.decode(str_icon, Base64.DEFAULT);
 
-        //  Setting values
-        tvNameIco.setText(nameIco);
-        ivSecondViewIcon.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
+            /** Convert Based64 to image*/
+            String str_icon = ivSecondViewIc.replace("data:image/png;base64,", "");
+            byte[] decodedString = Base64.decode(str_icon, Base64.DEFAULT);
+
+            //  Setting values
+            tvNameIco.setText(nameIco);
+            ivSecondViewIcon.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
 
 //        // Шаблоны для выпадающего списка
-        itemMenuSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listSpinner);
+            itemMenuSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listSpinner);
 //        itemMenuSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //
 //        //  Установка адаптера
@@ -109,24 +112,21 @@ public class SecondActivity extends AppCompatActivity {
 //
 //        // Устанвка события при выборе элемента из списка
 //        sMenu.setOnItemSelectedListener(onItemSelectedListener());
-        drawingSecondScreen();
-
-
+            drawingSecondScreen();
+        } catch (Exception e) {
+            Log.e("ERROR", "ERROR IN CODE: " + e.toString());
+            e.printStackTrace();
+        }
     }
 
     /**
      * Get JSON data from LOCAL Server + transmit data to adapter in RecyclerView ......... Start
      */
     private void drawingSecondScreen() {
-
         // Drawing according pressed button = according API
-        // Представим чито гипотетически что я получил API и срасниваюего черехз СВИЧкейс, и подгружаю нужный ЖСОН ссервера.
-//        String apiPressedButton = "security";
-        String apiPressedButton = "new";
-
-        switch (apiPressedButton) {
+  switch (apiPressedButton) {
             case "new":
-                System.out.println("1   > > > > > new");
+                System.out.println("· · · · · · · · · " + apiPressedButton);
                 api = ApiClient.getClientLocal().create(Api.class);
                 api.getData().enqueue(new Callback<SecondScreenModel>() {
                     @Override
@@ -152,7 +152,6 @@ public class SecondActivity extends AppCompatActivity {
                         for (int i = 0; i < secondActivity.getButtonsMy().size(); i++) {
                             listButtons.add(secondActivity.getButtonsMy().get(i).getText());
                         }
-
 
 //                Com. 2. Start. Filling the Spinner
                         // Шаблоны для выпадающего списка
@@ -270,7 +269,7 @@ public class SecondActivity extends AppCompatActivity {
                 });
                 break;
             case "security":
-                System.out.println("2  > > > > > security");
+                System.out.println("· · · · · · · · · " + apiPressedButton);
                 api = ApiClient.getClientLocal().create(Api.class);
                 api.getDataSecurity().enqueue(new Callback<ApiSecurity>() {
                     @Override

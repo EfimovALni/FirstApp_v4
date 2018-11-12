@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
@@ -20,14 +21,13 @@ import java.util.List;
 import cz.firstapp.firstapp_v4.model.Initial_screen;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder> {
+    public String apiPressedButton;
     private Context mContext;
     private List<Initial_screen> mData;
     private MainActivity mainActivity;
-//    public String apiPresedButton;
 
     private static final String TAG = "Res ";
 
-    GetAPI getAPI = new GetAPI();
 
 
     public void setmContext(Context mContext) {
@@ -51,10 +51,11 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         return new ViewHolder(itemView);
     }
 
+//    Логика наполнения view
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Initial_screen example = mData.get(position);
-        holder.tvNameIco.setText(example.getText());
+        holder.tvNameIco.setText(example.getText()); // ез костылей должно быть так!!!!!
 
         /** Convert Based64 to image*/
         String s = example.getIcon();
@@ -63,47 +64,41 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         holder.ivIco.setImageBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length));
 
         //  Set click listener
+//        holder.cardView.setOnClickListener(new );
+
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void  onClick(View v) {
                 //  Passing data to the Second Activity
                 Intent intent = new Intent(mContext, SecondActivity.class);
                 intent.putExtra("NameIco", mData.get(position).getText());
-
                 intent.putExtra("Ico", mData.get(position).getIcon()); //TODO: ---------------!
+                intent.putExtra("api", mData.get(position).getApi());
 
-
-                // Вычисление API нажатой кнопки (при нажатии)
+//                // Вычисление API нажатой кнопки (при нажатии)
                 mContext.startActivity(intent);
-
-                // Получение API нажатой кнопки...
-                String st = mData.get(position).getApi();
-                getAPI.setPressedAPI(st);
-//                apiPresedButton = mData.get(position).getApi();
-                Log.e("-----------------", getAPI.getPressedAPI());
             }
         });
     }
 
 
+
     /**
      * Method for getting 'API of pressed button'
      */
-//    private void pressedAPI() {
-//        String apiPressedBtn;
-//        apiPressedBtn = mData.get(onBindViewHolder());
-////        Log.e("API from method: ", api);
-//    }
     @Override
     public int getItemCount() {
         return mData == null ? 0 : mData.size();
     }
 
+//    Парсим Layout
     public static class ViewHolder extends RecyclerView.ViewHolder {
         protected TextView tvNameIco;
         protected ImageView ivIco;
         protected CardView cardView;    // Buttons on the main screen
 
+//        собственно ViewHolder – привычная заглушка
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
