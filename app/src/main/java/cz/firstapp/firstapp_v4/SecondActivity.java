@@ -122,6 +122,7 @@ public class SecondActivity extends AppCompatActivity {
     /**
      * Get JSON data from LOCAL Server + transmit data to adapter in RecyclerView ......... Start
      */
+    // TODO ------------------------------------------Раскоментировать по мере подключения к серверу
     private void drawingSecondScreen() {
         // Drawing according pressed button = according API
   switch (apiPressedButton) {

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_second_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="5dp"
+    tools:context=".SecondActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_second_view"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            >
+
+            <ImageView
+                android:id="@+id/iv_second_view_ico"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerInside"
+                android:background="@drawable/krugliye_ugli"/>
+
+            <TextView
+                android:id="@+id/tv_second_view_name_ico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_second_view_ico"
+                android:layout_gravity="center"
+                android:background="@drawable/krugliye_ugli_text"
+                android:gravity="center"
+                android:text="Name ico"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_below="@id/rl_second_view"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:background="@drawable/separator" />
+
+        <Spinner
+            android:id="@+id/s_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_second_view"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:padding="5dp"
+            android:spinnerMode="dialog" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_below="@id/s_menu"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:background="@drawable/separator" />
+
+        <TextView
+            android:id="@+id/tv_info_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/s_menu"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:gravity="center"
+            android:text="info_1"
+            android:textSize="@dimen/textSize_info" />
+
+        <Button
+            android:id="@+id/b_preferred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_info_1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:gravity="center"
+            android:text="Preferred"
+            android:textAllCaps="false" />
+
+
+        <CheckBox
+            android:id="@+id/cb_under"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/b_preferred"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="cb_under"
+            android:textSize="@dimen/textSize_info" />
+
+        <CheckBox
+            android:id="@+id/cb_more_than"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cb_under"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="cb_more_than"
+            android:textSize="@dimen/textSize_info" />
+
+        <CheckBox
+            android:id="@+id/cb_purchase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cb_more_than"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="cb_purchase"
+            android:textSize="@dimen/textSize_info" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_below="@id/cb_purchase"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:background="@drawable/separator" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cb_purchase"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="tv_email"
+            android:textSize="@dimen/textSize_info" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_email"
+            android:hint="Enter email"
+            android:textSize="@dimen/text_size_hint"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_email"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="tv_phone"
+            android:textSize="@dimen/textSize_info" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_phone"
+            android:hint="Enter phone"
+            android:textSize="@dimen/text_size_hint"
+            android:inputType="phone"/>
+
+        <TextView
+            android:id="@+id/tv_purpose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_phone"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="tv_purpose"
+            android:textSize="@dimen/textSize_info" />
+
+        <EditText
+            android:id="@+id/et_purpose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_purpose"
+            android:textSize="@dimen/text_size_hint"
+            android:hint="Enter purpose" />
+
+        <TextView
+            android:id="@+id/tv_improvements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_purpose"
+            android:layout_marginTop="@dimen/margin_before_element"
+            android:text="tv_purpose"
+            android:textSize="@dimen/textSize_info" />
+
+        <EditText
+            android:id="@+id/et_improvements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_improvements"
+            android:textSize="@dimen/text_size_hint"
+            android:hint="Enter name of responsible manager" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_improvements"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/b_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Attachment"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/b_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textColor="#00ff00"
+                android:text="Ticket"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/b_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Cancel"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <!--fields_filled-->
+</ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

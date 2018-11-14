@@ -17,11 +17,33 @@ public interface Api {
      * Code for REMOTE server
      */
 
-    /* ONLY for remote Server
-    @FormUrlEncoded
-    @POST("DAN/ajaxData.php")
-    Call<DataResponse> getData(@FieldMap Map<String, String> fields);*/
+//     Getting data of 'MainScreen.json'
+//    @FormUrlEncoded
+//    @POST("DAN/ajaxData.php")
+//    Call<DataResponse> getData(@FieldMap Map<String, String> fields);
 
+//    Getting data of list of 'ApiMy.json'
+//    @FormUrlEncoded
+//    @POST("DAN/ajaxData.php")
+//    Call<DataResponse> getApi(@FieldMap Map<String, String> fields);
+
+//    Getting data of ApiSecurity
+//    @FormUrlEncoded
+//    @POST("DAN/ajaxData.php")
+//    Call<DataResponse> getApi(@FieldMap Map<String, String> fields);
+
+
+
+//    Getting data of list of 'ApiSecurity.json'
+//    Getting data of list of 'SecondScreen.json'
+
+
+
+
+
+
+
+//    For local server - полсел показа Дану локалка перестала работать, просто пустой экран показывает.
     @GET("data")
     Call<DataResponse> getDataMainScreen();
 
@@ -33,7 +55,6 @@ public interface Api {
 
     @GET("api")
     Call<ApisMy> getApi();
-
 
 
 //    E/APIs:  [security, notebooks, printers, sip, connectivity, new, dms, desktops, software, mobiles, email, user, videoconference, sap, citrix]
