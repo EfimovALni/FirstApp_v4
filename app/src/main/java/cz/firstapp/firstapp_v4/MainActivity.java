@@ -177,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
      * Get JSON data from Server + transmit data to adapter in RecyclerView ......... Start
      */
     public void drawingInterface() {
-        api = ApiClient.getClient().create(Api.class); // FOR REMOTE SERVER!
+//        api = ApiClient.getClient().create(Api.class); // FOR REMOTE SERVER!
 //        api.getData(requestDataMainScreen()).enqueue((new Callback<DataResponse>() { // FOR REMOTE SERVER!
 
-//        api = ApiClient.getClientLocal().create(Api.class);   // FOR local SERVER!
+        api = ApiClient.getClientLocal().create(Api.class);   // FOR local SERVER!
         api.getDataMainScreen().enqueue(new Callback<DataResponse>() {    // FOR local SERVER!
             @Override
             public void onResponse(Call<DataResponse> call, Response<DataResponse> response) {
