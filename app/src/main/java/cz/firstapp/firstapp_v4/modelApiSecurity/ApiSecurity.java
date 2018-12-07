@@ -1,9 +1,9 @@
-package cz.firstapp.firstapp_v4.modelSecondScreen;
+package cz.firstapp.firstapp_v4.modelApiSecurity;
 
 
 import java.util.List;
 
-public class SecondScreenModel{
+public class ApiSecurity {
     private List<SpinnerMy> spinnerMy;
     private List<TextsMy> textsMy;
     private List<CheckboxMy> checkboxMy;

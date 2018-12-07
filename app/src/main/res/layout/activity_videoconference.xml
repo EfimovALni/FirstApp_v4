@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_second_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="5dp"
+    tools:context=".Videoconference">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/ll_contact_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact email address (mandatory)"
+                android:textSize="@dimen/textSize_info"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact phone address (mandatory)"
+                android:textSize="@dimen/textSize_info"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subject of the Meeting (max 120 char)? (mandatory)"
+                android:textSize="@dimen/textSize_info"/>
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/tv_subject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="120 symbols bfkjsdbfljkdbsf ljkbflkjsdblfjsbdl fjbdsljkfbsldjkfblsd jbfldsjhbfhdsbfhjsdbfl hsdblfhsdblfhb sdljhfbsdljhfbsdjhfbls dhjb"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:maxLines="4"
+                android:singleLine="false"
+                />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/ll_date_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/ll_contact_info">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date and Time when the meeting should be started? (mandatory)"/>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="@dimen/textSize_info"/>
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Click"/>
+            </android.support.v7.widget.LinearLayoutCompat>
+
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="@dimen/textSize_info"/>
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"/>
+            </android.support.v7.widget.LinearLayoutCompat>
+            <Spinner
+                android:id="@+id/s_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+        <!-- <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/et_subject"
+             android:orientation="vertical">
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+
+                 <EditText
+                     android:id="@+id/addr_edittext"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:gravity="top|left"
+                     android:inputType="text|textMultiLine"
+                     android:lines="20"
+                     android:minLines="2"
+                     android:scrollbars="vertical"
+                     android:scrollHorizontally="false" />
+
+             </LinearLayout>
+
+
+             <TextView
+                 android:id="@+id/tv_time"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/margin_before_element"
+                 android:layout_weight="1"
+                 android:text="Time"
+                 android:textSize="@dimen/textSize_info" />
+
+
+
+             <TextView
+                 android:id="@+id/tv_time_zone"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/margin_before_element"
+                 android:layout_weight="1"
+                 android:text="Time zone"
+                 android:textSize="@dimen/textSize_info" />-->
+
+             <Spinner
+                 android:id="@+id/s_time_zone"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1" />
+
+           <!--  <CalendarView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+             </CalendarView>-->
+
+          <!--   <EditText
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="start"
+                 android:hint="Enter Data"
+                 android:imeOptions="actionDone"
+                 android:inputType="textMultiLine"
+                 android:minLines="3" />-->
+
+         <!--</LinearLayout>-->
+
+
+    </RelativeLayout>
+</ScrollView>

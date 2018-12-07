@@ -1,7 +1,7 @@
 package cz.firstapp.firstapp_v4.model;
 
 /**
- * The {@code DataResponse} class which repeat JSON model. According this
+ * The {@code MainScreen} class which repeat JSON model. According this
  * class JSON will be deserialize.
  *
  * @author Alexander Efimov
@@ -9,7 +9,7 @@ package cz.firstapp.firstapp_v4.model;
  * @date last changed: 14.10.2018
  */
 
-public class DataResponse {
+public class MainScreen {
     private String status;
     private Float actual_version;
     private Configuration configuration;    //TODO: change in JSON 'configuartion' to 'configuration'

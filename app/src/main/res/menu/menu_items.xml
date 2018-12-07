@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_about_app"
+        android:orderInCategory="0"
+        android:title="@string/item_about_app"
+        app:showAsAction="never"
+        android:onClick="onAbout"/>
+
+    <item
+        android:id="@+id/item_login_out"
+        android:orderInCategory="3"
+        android:title="@string/item_login_out"
+        app:showAsAction="always"
+        android:onClick="onSingOut"/>
+
+    <item
+        android:id="@+id/item_test"
+        android:orderInCategory="2"
+        android:title="Test"
+        app:showAsAction="never"
+        android:onClick="onTest"/>
+
+</menu>

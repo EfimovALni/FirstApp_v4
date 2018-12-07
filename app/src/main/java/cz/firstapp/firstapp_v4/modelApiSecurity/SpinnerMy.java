@@ -1,4 +1,4 @@
-package cz.firstapp.firstapp_v4.apiSecurity;
+package cz.firstapp.firstapp_v4.modelApiSecurity;
 
 public class SpinnerMy{
     private String itemMy;

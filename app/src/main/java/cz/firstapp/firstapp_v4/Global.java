@@ -1,6 +1,6 @@
 package cz.firstapp.firstapp_v4;
 
-import cz.firstapp.firstapp_v4.model.DataResponse;
+import cz.firstapp.firstapp_v4.model.MainScreen;
 import retrofit2.Response;
 
 /**
@@ -12,5 +12,5 @@ import retrofit2.Response;
  */
 
 public class Global {
-    public static Response<DataResponse> response_Global = null;
+    public static Response<MainScreen> response_Global = null;
 }

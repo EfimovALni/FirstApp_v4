@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">FirstApp_v4</string>
+    <string name="app_name">Ticket_v4</string>
+
+    <string name="checkBox">package cz.firstapp.firstapp_v4.checkBox</string>
+    <string name="login">package cz.firstapp.firstapp_v4.login</string>
+    <string name="password">package cz.firstapp.firstapp_v4.password</string>
+
+
     <string name="MessageNotInternetConnection">v4_Couldn\'t place update application. Make sure your device has an
         Internet connection and try again.
     </string>
@@ -9,21 +15,29 @@
     <string name="spinnerFirstLine">New equipment -</string>
     <string name="title_activity_login">Sign in</string>
     <!-- Strings related to login -->
+    <string name="prompt_name_of_server">Name of server</string>
     <string name="prompt_login">Login</string>
+    <string name="prompt_status">Status</string>
+    <string name="prompt_message">Message</string>
+    <string name="prompt_loginResult">LoginResult</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_out">Sign out</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_server">This name of server is incorrect</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="prompt_name_of_server">Name of server</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing login
         completions."
     </string>
+    <string name="saving_logging_info">Remember my login information</string>
+    <string name="item_about_app">About application</string>
+    <string name="item_login_out">Sing out</string>
+    <string name="exit">Exit</string>
+    <string name="exit_message">Are you sure?</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Login</string>
 </resources>
 
 

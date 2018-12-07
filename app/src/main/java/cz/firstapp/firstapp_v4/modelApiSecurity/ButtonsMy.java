@@ -1,6 +1,6 @@
-package cz.firstapp.firstapp_v4.apiSecurity;
+package cz.firstapp.firstapp_v4.modelApiSecurity;
 
-public class TextsMy{
+public class ButtonsMy{
     private String name;
     private String text;
 

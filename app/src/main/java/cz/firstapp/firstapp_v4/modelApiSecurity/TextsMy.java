@@ -1,6 +1,6 @@
-package cz.firstapp.firstapp_v4.apiSecurity;
+package cz.firstapp.firstapp_v4.modelApiSecurity;
 
-public class CheckboxMy{
+public class TextsMy{
     private String name;
     private String text;
 
